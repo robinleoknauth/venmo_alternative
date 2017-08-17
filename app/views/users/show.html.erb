@@ -1,0 +1,39 @@
+<h1 class="name"><%= @user.name %></h1>
+
+<% @user.groups.each do |group| %>
+<table>
+<thead>
+  <tr>
+    <th colspan="2"><%= group.name %></th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Description</th>
+    <th>Amount</th>
+  </tr>
+    <% @user.payments.where(group: group).each do |payment| %>
+    <tr>
+      <td><%= payment.description.capitalize %></td>
+      <td>$<%= payment.amount %></td>
+    </tr>
+  </tbody>
+  <% end %>
+  <tfoot>
+    <tr>
+      <td>TOTAL</td>
+      <td>$<%= @user.balance(group: group) %></td>
+    </tr>
+  </tfoot><br>
+  </table><br>
+  <%= form_for [@user, @user.payments.new] do |f| %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :amount %>
+  <%= f.text_field :amount %>
+  <%= f.hidden_field :group_id, value: group.id %>
+  <%= f.submit %>
+<% end %>
+  <% end %>
+
