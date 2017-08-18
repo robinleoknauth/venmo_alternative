@@ -2,10 +2,15 @@ class UsersController < ApplicationController
   def index
   end
 
-  def create
+  def new
+    @user = User.new
   end
 
-  def new
+  def create
+    @user = User.new(whitelist)
+    unless @user.save
+      render plain: "Signup unsuccessful"
+    end
   end
 
   def show
@@ -19,5 +24,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+  
+  private
+  def whitelist
+    params.require(:user).permit(:name, :nickname)
   end
 end

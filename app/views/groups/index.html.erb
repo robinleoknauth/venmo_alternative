@@ -1,2 +1,23 @@
-<h1>Groups#index</h1>
-<p>Find me in app/views/groups/index.html.erb</p>
+<h1>Admin</h1>
+<p>Please press back button if you're not allowed to be here.</p>
+
+<table>
+  <tr>
+    <thead>
+      <th>Group Name</th>
+      <th>ID</th>
+      <th>Balance</th>
+      <th>Number of Members</th>
+    </thead>
+  </tr>
+<% Group.all.each do |group| %>
+  <tr>
+    <tbody>
+      <td><%= link_to group.name.capitalize, group %></td>    
+      <td><%= group.id %></td>
+      <td><%= group.balance %></td>
+      <td><%= group.users.count %></td>
+    </tbody>
+  </tr>
+<% end %>
+</table>

@@ -1,6 +1,9 @@
 <h1 class="name"><%= @user.name %></h1>
 
+<h2>$<%= @user.balance %></h2>
+
 <% @user.groups.each do |group| %>
+<% if member_of? group: group %>
 <table>
 <thead>
   <tr>
@@ -27,13 +30,16 @@
     </tr>
   </tfoot><br>
   </table><br>
-  <%= form_for [@user, @user.payments.new] do |f| %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :amount %>
-  <%= f.text_field :amount %>
-  <%= f.hidden_field :group_id, value: group.id %>
-  <%= f.submit %>
+    <% if current_user == @user %>
+      <%= form_for [@user, @user.payments.new] do |f| %>
+      <%= f.label :description %>
+      <%= f.text_field :description %><br>
+      <%= f.label :amount %>
+      <%= f.text_field :amount %><br>
+      <%= f.hidden_field :group_id, value: group.id %>
+      <%= f.submit %>
+    <% end %>
 <% end %>
-  <% end %>
+<% end %>
+<% end %>
 

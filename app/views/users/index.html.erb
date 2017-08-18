@@ -1,2 +1,24 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>Admin</h1>
+<p>Please press back button if you're not allowed to be here.</p>
+
+<table>
+
+  <tr>
+    <th>Name</th>
+    <th>Nickname</th>
+    <th>ID</th>
+    <th>Group</th>
+  </tr>
+  <% User.all.each do |user| %>
+  <tr>
+  <td><%= link_to user.name.capitalize, user %></td>
+  <td><%= user.nickname.capitalize %></td>
+  <td><%= user.id %></td>
+  <td>
+     <% user.groups.each do |group| %>
+    <li><%= group.name %></li>
+     <% end %>
+  </td>
+  </tr>
+<% end %>
+</table>

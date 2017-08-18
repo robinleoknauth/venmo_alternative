@@ -1,0 +1,16 @@
+<nav>
+  <ul>
+    <li><%= link_to "Home", welcome_path %></li>
+    <li><%= link_to "About", about_path %></li>
+    <li><%= link_to "Contact", contact_path %></li>
+    <% unless logged_in? %>
+    <li><%= link_to "Signup", signup_path %></li>
+    <li><%= link_to "Login", login_path %></li>
+    <% else %>
+    <li><%= link_to "Groups", groups_path %></li>
+    <li><%= link_to "Users", users_path %></li>
+    <li><%= link_to "Logout", login_path if logged_in? %></li>
+    <li><%= link_to current_user.nickname, current_user if logged_in? %></li>
+    <% end %>
+  </ul>
+</nav>

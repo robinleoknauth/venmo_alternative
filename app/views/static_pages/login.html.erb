@@ -1,0 +1,11 @@
+Here we set a cookie. 
+We can cheat and set the cookie to whatever the params[:login_id] gets
+So /login?login_id=1 would log you in as user_id 1:::::
+
+?login_id=<%= params[:id] %>
+
+<% session.delete(:login_id) %>
+<% session.delete(:id) if params[:id].nil? %>
+<% session[:id] = params[:id] %>
+
+Session: <%= session[:id] %>
