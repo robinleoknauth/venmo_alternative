@@ -8,7 +8,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(whitelist)
-    unless @user.save
+    if @user.save
+      render json: @user
+    else
       render plain: "Signup unsuccessful"
     end
   end

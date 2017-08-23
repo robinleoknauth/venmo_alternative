@@ -5,9 +5,9 @@ class PaymentsController < ApplicationController
   def create
     @payment = Payment.new(whitelist)
     if @payment.save
-      render plain: "Save successful"
+      render json: @payment
     else
-      render plain: "Save unsuccessful"
+      render json: @payment.errors.full_messages
     end
   end
   
