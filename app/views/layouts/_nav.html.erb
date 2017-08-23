@@ -6,8 +6,8 @@
     <% unless logged_in? %>
     <li><%= link_to 'Login', '/auth/github' %></li>
     <% else %>
-    <li><%= link_to "Groups", groups_path %></li>
-    <li><%= link_to "Users", users_path %></li>
+    <li><%= link_to "Admin:Groups", groups_path %></li>
+    <li><%= link_to "Admin:Users", users_path %></li>
     <li><%= link_to "Logout", logout_path %></li>
     <li><%= link_to current_user.nickname, current_user if logged_in? %></li>
     <% end %>

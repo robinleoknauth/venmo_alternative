@@ -8,9 +8,11 @@ class SessionsController < ApplicationController
       session[:id] = @user.id
       redirect_to @user
     else
-      @user = User.new(nickname: user_data['nickname'], name: user_data['nickname'])
+      @user = User.new(nickname: user_data['nickname'], name: user_data['name'])
       if @user.save
         redirect_to @user
+      else
+        render plain: 'Shit.'
       end
     end
   end
