@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_nickname(user_data['nickname'])
     if @user
       session[:id] = @user.id
-      render json: @user
+      redirect_to @user
     else
       @user = User.new(nickname: user_data['nickname'], name: user_data['nickname'])
       if @user.save
@@ -16,5 +16,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    session.delete(:id)
   end
 end
