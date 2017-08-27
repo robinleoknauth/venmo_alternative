@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find_by(params[:id])
+    @group = Group.find_by(params[:id]git )
   end
 
   def update
