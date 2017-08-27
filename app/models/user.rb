@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2 }
   validates :nickname, presence: true, uniqueness: true
   
+  # debugger
+  
   def balance group:nil
     if group
       group = Group.find_by_name(group) if group.class == String
